@@ -252,7 +252,7 @@ void RandomSpawn() {
         }
     }
 }
-void MusicSeregaPirat() {
+void Music() {
     PlaySound(TEXT("skyline_ryodan.wav"), NULL, SND_LOOP | SND_ASYNC);
 }
 void GoDirectionIllusion() {
@@ -886,7 +886,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         InvalidateRect(hWnd, NULL, TRUE);
         //WIN
         if (mode == MUSIC) {
-            MusicSeregaPirat();
+            Music();
             mode = START;
         }
         if (mode == WIN1) {
