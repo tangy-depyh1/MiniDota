@@ -228,27 +228,26 @@ void RandomSpawn() {
         manta.Y = rand() % (maxy - miny + 1) + miny;
     }
     raz = 0;
-    if (creep[0].Vision == 0 || creep[0].Helth < 1) {
-        creep[0].Vision = 1;
-        creep[0].X = rand() % (1900 - 10 + 1) + 10;
-        creep[0].Y = rand() % (1000 + 10 + 1) - 10;
-        return;
+    if (rand() % 10 == 1|| rand() % 10 == 2) {
+        if (creep[0].Helth < 1 || creep[0].Vision < 1) {
+            creep[0].Vision = 1;
+            creep[0].Helth = 1;
+            creep[0].X = rand() % (1900 - 10 + 1) + 10;
+            creep[0].Y = rand() % (1000 + 10 + 1) - 10;
+        }
+
+        if (creep[1].Helth < 1 || creep[1].Vision < 1) {
+            creep[1].Vision = 1;
+            creep[1].Helth = 1;
+            creep[1].X = rand() % (1900 - 10 + 1) + 10;
+            creep[1].Y = rand() % (1000 + 10 + 1) - 10;
+        }
     }
-
-
-    if (creep[1].Vision == 0 || creep[1].Helth < 1) {
-        creep[1].Vision = 1;
-        creep[1].X = rand() % (1900 - 10 + 1) + 10;
-        creep[1].Y = rand() % (1000 + 10 + 1) - 10;
-        return;
-    }
-
     if (rand() % 10 == 0) {
         if (manta.Vision == 0) {
             manta.X = rand() % (1900 - 10 + 1) + 10;
             manta.Y = rand() % (1000 + 10 + 1) - 10;
             manta.Vision = 1;
-            return;
         }
     }
 }
@@ -334,6 +333,7 @@ void statistics(HDC hdc) {
 
 }
 void DrawGame(HDC hdc) {
+    statistics(hdc);
     if (anti_mag.Helth > 0) {
         ANTI_MAG(hdc, anti_mag.X, anti_mag.Y);
     }
@@ -373,7 +373,6 @@ void DrawGame(HDC hdc) {
         Healing_Salve(hdc, healing[1].X, healing[1].Y);
     }
 
-    statistics(hdc);
 }
 void TryToHealing() {
     if (healing[0].Vision) {
@@ -457,31 +456,31 @@ void GoDirection() {
     if (creep[0].Vision && creep[0].Helth > 0) {
         if (anti_mag.HasManta == 0) {
             if (anti_mag.X > creep[0].X)
-                dx = 8;
+                dx = 10;
             if (anti_mag.X < creep[0].X)
-                dx = -8;
+                dx = -10;
             if (anti_mag.Y > creep[0].Y)
-                dy = 8;
+                dy = 10;
             if (anti_mag.Y < creep[0].Y)
-                dy = -8;
+                dy = -10;
         }
         if (anti_mag.HasManta == 1) {
 
             if (anti_mag.X > creep[0].X) {
                 if (WinRect.left + 10 <= creep[0].X)
-                    dx = -8;
+                    dx = -10;
             }
             if (anti_mag.X < creep[0].X) {
                 if (WinRect.right - 10 >= creep[0].X)
-                    dx = 8;
+                    dx = 10;
             }
             if (anti_mag.Y > creep[0].Y) {
                 if (WinRect.top + 10 <= creep[0].Y)
-                    dy = -8;
+                    dy = -10;
             }
             if (anti_mag.Y < creep[0].Y) {
                 if (WinRect.bottom - 10 >= creep[0].Y)
-                    dy = 8;
+                    dy = 10;
             }
         }
         creep[0].X += dx;
@@ -786,7 +785,7 @@ void KeepGame() {
     fprintf(fout, "\n\n\n");
     //healing
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         fprintf(fout, "%d %d %d\n", healing[i].X, healing[i].Y, healing[i].Vision);
     }
     fprintf(fout, "\n\n\n");
@@ -819,7 +818,7 @@ void LoadGame() {
     fscanf_s(fin, "\n\n\n");
     //healing
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         fscanf_s(fin, "%d %d %d\n", &healing[i].X, &healing[i].Y, &healing[i].Vision);
     }
     fscanf_s(fin, "\n\n\n");
