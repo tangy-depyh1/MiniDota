@@ -379,10 +379,15 @@ void GoDirectionIllusion() {
 
 }
 void statistics(HDC hdc) {
+
+    HPEN hPenbg = CreatePen(PS_SOLID, 2, RGB(255,255,159));
     HBRUSH hBrushbg = CreateSolidBrush(RGB(0, 0, 0));
+    SelectObject(hdc, hPenbg);
     SelectObject(hdc, hBrushbg);
     Rectangle(hdc, 280 + 167, 630 + 216, 1320 + 192, 785 + 216);
     DeleteObject(hBrushbg);
+    DeleteObject(hPenbg);
+
     //Manta
     if (anti_mag.HasManta >= 1)
         MANTA_STYLE(hdc, 350 + 192, 730 + 216);
@@ -870,6 +875,29 @@ void FINAL1(HDC hdc) {
     MANTA_STYLE(hdc, imMANTA_STYLE3F.cx, imMANTA_STYLE3F.cy);
     MANTA_STYLE(hdc, imMANTA_STYLE4F.cx, imMANTA_STYLE4F.cy);
 }
+void BUTTONSTART(HDC hdc) {
+
+    //BUTTON
+    HPEN hPengreen = CreatePen(PS_SOLID, 2, RGB(33, 222, 71));
+    HBRUSH hBrushGreen = CreateSolidBrush(RGB(33, 222, 71));
+
+
+    SelectObject(hdc, hPengreen);
+    SelectObject(hdc, hBrushGreen);
+    RoundRect(hdc, 712, 606, 1207, 700, 20, 20);
+    DeleteObject(hPengreen);
+    DeleteObject(hBrushGreen);
+
+    HFONT hFont = CreateFont(60, 0, 0, 0, 999, 9, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Courier New");
+    SelectObject(hdc, hFont);
+    SetBkMode(hdc, TRANSPARENT);
+    SetTextColor(hdc, RGB(0, 0, 0));
+    TCHAR strT[180] = L"RESTART";
+    SetTextAlign(hdc, TA_CENTER);
+    TextOut(hdc, 952, 616, (LPCWSTR)strT, _tcslen(strT));
+    DeleteObject(hFont);
+}
+
 void DC_Paint(HWND hwnd)
 {
     int dc_width, dc_height;
@@ -893,7 +921,7 @@ void DC_Paint(HWND hwnd)
     }
     HBRUSH hBrushbg = CreateSolidBrush(RGB(55, 54, 84));
     SelectObject(Frame_DC, hBrushbg);
-    Rectangle(Frame_DC, -1, -1, rect.right, rect.bottom);
+    Rectangle(Frame_DC, -1, -1, rect.right+1, rect.bottom+1);
     DeleteObject(hBrushbg);
     if (mode == START) {
 
@@ -902,26 +930,7 @@ void DC_Paint(HWND hwnd)
         Textby(Frame_DC, 960, 510);
         ANTI_MAG(Frame_DC, imANTI_MAG.cx, imANTI_MAG.cy);
         MONY(Frame_DC, imMONY.cx, imMONY.cy);
-
-        //BUTTON
-        HPEN hPengreen = CreatePen(PS_SOLID, 2, RGB(33, 222, 71));
-        HBRUSH hBrushGreen = CreateSolidBrush(RGB(33, 222, 71));
-
-
-        SelectObject(hdc, hPengreen);
-        SelectObject(hdc, hBrushGreen);
-        RoundRect(hdc, 712, 606, 1207, 700, 20, 20);
-        DeleteObject(hPengreen);
-        DeleteObject(hBrushGreen);
-
-        HFONT hFont = CreateFont(30, 0, 0, 0, 999, 9, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Courier New");
-        SelectObject(hdc, hFont);
-        SetBkMode(hdc, TRANSPARENT);
-        SetTextColor(hdc, RGB(0, 0, 0));
-        TCHAR strT[180] = L"RESTART";
-        SetTextAlign(hdc, TA_CENTER);
-        TextOut(hdc, 1825, 30, (LPCWSTR)strT, _tcslen(strT));
-        DeleteObject(hFont);
+        BUTTONSTART(Frame_DC);
 
     }
     if (mode == LOAD) {
@@ -1051,6 +1060,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             anti_mag.number_of_coins -= 3;
         }
+        if (mode == START) {
+
+
+            WORD xButton, yButton;
+
+            // Сохраняем координаты курсора мыши
+            xButton = LOWORD(lParam);
+            yButton = HIWORD(lParam);
+
+            if (xButton >= 712 && xButton <= 1207 && yButton <=700  && yButton >=606 ) {
+                mode = GAME;
+            }
+
+
+            InvalidateRect(hWnd, NULL, TRUE);
+
+        }
         if (mode == GAME) {
 
             WORD xButton, yButton;
@@ -1093,7 +1119,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         SetTimer(hWnd, 1, 100, 0);
         break;
     case WM_TIMER:
-
+        //ПРЕКРАЩЕНИЕ звуков спустя N 
         if (zvuk == true) {
             time_zvuk++;
             if (time_zvuk ==10) {
@@ -1102,7 +1128,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 time_zvuk = 0;
             }
         }
-
 
         InvalidateRect(hWnd, NULL, TRUE);
         if (mode == LOAD) {
@@ -1324,9 +1349,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         TryToEatManta();
         TryToEatMony();
         TryToHealing();
-        if (mode == START) {
-            mode = GAME;
-        }
 
         if (anti_mag.Helth < 1) {
             mode = LOSS;
