@@ -1178,3 +1178,355 @@ void MANTA_STYLE(HDC hdc, int cx, int cy) {
     DeleteObject(mantaviolddb);
 
 }
+void puge(HDC hdc, int cx, int cy) {
+
+
+    HPEN pinkp = CreatePen(PS_SOLID, 2, RGB(204, 155, 151));
+    HBRUSH pinkb = CreateSolidBrush(RGB(204, 155, 151));
+    SelectObject(hdc, pinkp);
+    SelectObject(hdc, pinkb);
+    Rectangle(hdc, 114 - 128 + cx, 8 - 115 + cy, 126 - 128 + cx, 14 - 115 + cy);
+    Rectangle(hdc, 114 - 128 + cx, 8 - 115 + cy, 120 - 128 + cx, 21 - 115 + cy);
+    Rectangle(hdc, 93 - 128 + cx, 8 - 115 + cy, 106 - 128 + cx, 28 - 115 + cy);
+    Rectangle(hdc, 86 - 128 + cx, 15 - 115 + cy, 98 - 128 + cx, 35 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 22 - 115 + cy, 105 - 128 + cx, 28 - 115 + cy);
+    Rectangle(hdc, 71 - 128 + cx, 28 - 115 + cy, 78 - 128 + cx, 71 - 115 + cy);
+    Rectangle(hdc, 71 - 128 + cx, 28 - 115 + cy, 78 - 128 + cx, 71 - 115 + cy);
+    Rectangle(hdc, 64 - 128 + cx, 50 - 115 + cy, 77 - 128 + cx, 71 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 36 - 115 + cy, 84 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 84 - 128 + cx, 43 - 115 + cy, 93 - 128 + cx, 50 - 115 + cy);
+    Rectangle(hdc, 106 - 128 + cx, 29 - 115 + cy, 112 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 99 - 128 + cx, 36 - 115 + cy, 112 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 43 - 115 + cy, 112 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 64 - 115 + cy, 112 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 78 - 115 + cy, 92 - 128 + cx, 85 - 115 + cy);
+    Rectangle(hdc, 71 - 128 + cx, 85 - 115 + cy, 105 - 128 + cx, 92 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 92 - 115 + cy, 105 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 99 - 115 + cy, 99 - 128 + cx, 105 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 113 - 115 + cy, 84 - 128 + cx, 119 - 115 + cy);
+    Rectangle(hdc, 64 - 128 + cx, 92 - 115 + cy, 70 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 71 - 128 + cx, 99 - 115 + cy, 78 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 99 - 115 + cy, 85 - 128 + cx, 106 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 106 - 115 + cy, 92 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 15 - 115 + cy, 148 - 128 + cx, 28 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 22 - 115 + cy, 127 - 128 + cx, 56 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 22 - 115 + cy, 155 - 128 + cx, 28 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 28 - 115 + cy, 148 - 128 + cx, 35 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 36 - 115 + cy, 134 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 43 - 115 + cy, 155 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 36 - 115 + cy, 155 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 64 - 115 + cy, 128 - 128 + cx, 78 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 71 - 115 + cy, 135 - 128 + cx, 85 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 78 - 115 + cy, 148 - 128 + cx, 85 - 115 + cy);
+    Rectangle(hdc, 135 - 128 + cx, 85 - 115 + cy, 155 - 128 + cx, 92 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 15 - 115 + cy, 162 - 128 + cx, 21 - 115 + cy);
+    Rectangle(hdc, 163 - 128 + cx, 22 - 115 + cy, 169 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 168 - 128 + cx, 36 - 115 + cy, 176 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 50 - 115 + cy, 183 - 128 + cx, 78 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 64 - 115 + cy, 176 - 128 + cx, 70 - 115 + cy);
+    Rectangle(hdc, 183 - 128 + cx, 58 - 115 + cy, 189 - 128 + cx, 78 - 115 + cy);
+    Rectangle(hdc, 50 - 128 + cx, 198 - 115 + cy, 78 - 128 + cx, 211 - 115 + cy);
+    Rectangle(hdc, 77 - 128 + cx, 205 - 115 + cy, 84 - 128 + cx, 211 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 198 - 115 + cy, 197 - 128 + cx, 211 - 115 + cy);
+    Rectangle(hdc, 163 - 128 + cx, 205 - 115 + cy, 170 - 128 + cx, 211 - 115 + cy);
+    DeleteObject(pinkp);
+    DeleteObject(pinkb);
+
+    HPEN pinkdp = CreatePen(PS_SOLID, 2, RGB(157, 118, 119));
+    HBRUSH pinkdb = CreateSolidBrush(RGB(157, 118, 119));
+    SelectObject(hdc, pinkdp);
+    SelectObject(hdc, pinkdb);
+    Rectangle(hdc, 106 + cx - 128, 15 - 115 + cy, 112 - 128 + cx, 28 - 115 + cy);
+    Rectangle(hdc, 99 - 128 + cx, 29 - 115 + cy, 105 - 128 + cx, 35 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 29 - 115 + cy, 85 - 128 + cx, 35 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 36 - 115 + cy, 99 - 128 + cx, 42 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 50 - 115 + cy, 91 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 64 - 115 + cy, 84 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 71 - 128 + cx, 71 - 115 + cy, 77 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 64 - 128 + cx, 85 - 115 + cy, 70 - 128 + cx, 91 - 115 + cy);
+    Rectangle(hdc, 71 - 128 + cx, 92 - 115 + cy, 84 - 128 + cx, 98 - 115 + cy);
+    Rectangle(hdc, 86 - 128 + cx, 100 - 115 + cy, 91 - 128 + cx, 105 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 106 - 115 + cy, 84 - 128 + cx, 112 - 115 + cy);
+    Rectangle(hdc, 72 - 128 + cx, 114 - 115 + cy, 77 - 128 + cx, 119 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 78 - 115 + cy, 112 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 29 - 115 + cy, 162 - 128 + cx, 36 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 57 - 115 + cy, 127 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 64 - 115 + cy, 155 - 128 + cx, 70 - 115 + cy);
+    Rectangle(hdc, 135 - 128 + cx, 71 - 115 + cy, 155 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 78 - 115 + cy, 155 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 44 - 115 + cy, 182 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 50 - 115 + cy, 176 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 163 - 128 + cx, 64 - 115 + cy, 169 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 169 - 128 + cx, 71 - 115 + cy, 176 - 128 + cx, 91 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 79 - 115 + cy, 189 - 128 + cx, 84 - 115 + cy);
+    DeleteObject(pinkdp);
+    DeleteObject(pinkdb);
+
+    HPEN fartukp = CreatePen(PS_SOLID, 2, RGB(128, 144, 134));
+    HBRUSH fartukb = CreateSolidBrush(RGB(128, 144, 134));
+    SelectObject(hdc, fartukp);
+    SelectObject(hdc, fartukb);
+    Rectangle(hdc, 113 - 128 + cx, 50 - 115 + cy, 120 - 128 + cx, 70 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 79 - 115 + cy, 127 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 113 - 128 + cx, 85 - 115 + cy, 120 - 128 + cx, 98 - 115 + cy);
+    Rectangle(hdc, 106 - 128 + cx, 92 - 115 + cy, 120 - 128 + cx, 98 - 115 + cy);
+    Rectangle(hdc, 100 - 128 + cx, 100 - 115 + cy, 105 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 93 - 128 + cx, 106 - 115 + cy, 105 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 114 - 115 + cy, 91 - 128 + cx, 119 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 120 - 115 + cy, 98 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 99 - 128 + cx, 135 - 115 + cy, 141 - 128 + cx, 141 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 121 - 115 + cy, 134 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 113 - 128 + cx, 142 - 115 + cy, 133 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 121 - 115 + cy, 134 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 128 - 115 + cy, 134 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 100 - 115 + cy, 134 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 107 - 115 + cy, 141 - 128 + cx, 120 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 106 - 115 + cy, 162 - 128 + cx, 120 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 37 - 115 + cy, 162 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 160 - 128 + cx, 78 - 115 + cy, 169 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 92 - 115 + cy, 162 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 142 - 128 + cx, 99 - 115 + cy, 155 - 128 + cx, 105 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 105 - 115 + cy, 155 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 106 - 115 + cy, 176 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 163 - 128 + cx, 142 - 115 + cy, 169 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 142 - 115 + cy, 183 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 149 - 115 + cy, 176 - 128 + cx, 155 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 156 - 115 + cy, 183 - 128 + cx, 162 - 115 + cy);
+    Rectangle(hdc, 205 - 128 + cx, 93 - 115 + cy, 218 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 212 - 128 + cx, 99 - 115 + cy, 225 - 128 + cx, 105 - 115 + cy);
+    Rectangle(hdc, 219 - 128 + cx, 105 - 115 + cy, 225 - 128 + cx, 126 - 115 + cy);
+    Rectangle(hdc, 212 - 128 + cx, 121 - 115 + cy, 218 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 205 - 128 + cx, 127 - 115 + cy, 211 - 128 + cx, 141 - 115 + cy);
+    Rectangle(hdc, 198 - 128 + cx, 141 - 115 + cy, 204 - 128 + cx, 147 - 115 + cy);
+    Rectangle(hdc, 85 - 128 + cx, 141 - 115 + cy, 92 - 128 + cx, 155 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 149 - 115 + cy, 99 - 128 + cx, 169 - 115 + cy);
+    Rectangle(hdc, 99 - 128 + cx, 156 - 115 + cy, 106 - 128 + cx, 175 - 115 + cy);
+    Rectangle(hdc, 106 - 128 + cx, 163 - 115 + cy, 113 - 128 + cx, 169 - 115 + cy);
+    Rectangle(hdc, 113 - 128 + cx, 170 - 115 + cy, 120 - 128 + cx, 176 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 177 - 115 + cy, 127 - 128 + cx, 183 - 115 + cy);
+    Rectangle(hdc, 135 - 128 + cx, 113 - 115 + cy, 162 - 128 + cx, 119 - 115 + cy);
+    DeleteObject(fartukp);
+    DeleteObject(fartukb);
+
+    HPEN fartukdp = CreatePen(PS_SOLID, 2, RGB(79, 84, 78));
+    HBRUSH fartukdb = CreateSolidBrush(RGB(79, 84, 78));
+    SelectObject(hdc, fartukdp);
+    SelectObject(hdc, fartukdb);
+    Rectangle(hdc, 85 - 128 + cx, 120 - 115 + cy, 91 - 128 + cx, 141 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 135 - 115 + cy, 98 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 99 - 128 + cx, 142 - 115 + cy, 112 - 128 + cx, 155 - 115 + cy);
+    Rectangle(hdc, 107 - 128 + cx, 149 - 115 + cy, 155 - 128 + cx, 162 - 115 + cy);
+    Rectangle(hdc, 107 - 128 + cx, 149 - 115 + cy, 155 - 128 + cx, 162 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 149 - 115 + cy, 162 - 128 + cx, 155 - 115 + cy);
+    Rectangle(hdc, 114 - 128 + cx, 162 - 115 + cy, 127 - 128 + cx, 169 - 115 + cy);
+    Rectangle(hdc, 135 - 128 + cx, 163 - 115 + cy, 141 - 128 + cx, 190 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 170 - 115 + cy, 134 - 128 + cx, 176 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 162 - 115 + cy, 155 - 128 + cx, 175 - 115 + cy);
+    DeleteObject(fartukdp);
+    DeleteObject(fartukdb);
+
+    HPEN portkip = CreatePen(PS_SOLID, 2, RGB(23, 53, 41));
+    HBRUSH portkib = CreateSolidBrush(RGB(23, 53, 41));
+    SelectObject(hdc, portkip);
+    SelectObject(hdc, portkib);
+    Rectangle(hdc, 72 - 128 + cx, 120 - 115 + cy, 84 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 65 - 128 + cx, 149 - 115 + cy, 79 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 58 - 128 + cx, 177 - 115 + cy, 98 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 51 - 128 + cx, 184 - 115 + cy, 57 - 128 + cx, 190 - 115 + cy);
+    Rectangle(hdc, 78 - 128 + cx, 156 - 115 + cy, 91 - 128 + cx, 204 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 170 - 115 + cy, 98 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 184 - 115 + cy, 183 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 156 - 115 + cy, 169 - 128 + cx, 204 - 115 + cy);
+    Rectangle(hdc, 162 - 128 + cx, 149 - 115 + cy, 169 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 163 - 115 + cy, 183 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 156 - 115 + cy, 176 - 128 + cx, 197 - 115 + cy);
+    Rectangle(hdc, 190 - 128 + cx, 58 - 115 + cy, 197 - 128 + cx, 140 - 115 + cy);
+    Rectangle(hdc, 198 - 128 + cx, 72 - 115 + cy, 204 - 128 + cx, 141 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 85 - 115 + cy, 204 - 128 + cx, 98 - 115 + cy);
+    Rectangle(hdc, 205 - 128 + cx, 79 - 115 + cy, 211 - 128 + cx, 92 - 115 + cy);
+    Rectangle(hdc, 184 - 128 + cx, 99 - 115 + cy, 190 - 128 + cx, 105 - 115 + cy);
+    Rectangle(hdc, 205 - 128 + cx, 99 - 115 + cy, 211 - 128 + cx, 127 - 115 + cy);
+    Rectangle(hdc, 212 - 128 + cx, 114 - 115 + cy, 218 - 128 + cx, 120 - 115 + cy);
+    Rectangle(hdc, 205 - 128 + cx, 141 - 115 + cy, 211 - 128 + cx, 147 - 115 + cy);
+    Rectangle(hdc, 212 - 128 + cx, 134 - 115 + cy, 218 - 128 + cx, 140 - 115 + cy);
+    Rectangle(hdc, 58 - 128 + cx, 37 - 115 + cy, 70 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 50 - 128 + cx, 44 - 115 + cy, 63 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 51 - 128 + cx, 184 - 115 + cy, 57 - 128 + cx, 190 - 115 + cy);
+    Rectangle(hdc, 64 - 128 + cx, 71 - 115 + cy, 70 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 43 - 128 + cx, 65 - 115 + cy, 50 - 128 + cx, 92 - 115 + cy);
+    Rectangle(hdc, 57 - 128 + cx, 99 - 115 + cy, 63 - 128 + cx, 105 - 115 + cy);
+    DeleteObject(portkip);
+    DeleteObject(portkib);
+
+    HPEN bloodp = CreatePen(PS_SOLID, 2, RGB(132, 13, 7));
+    HBRUSH bloodb = CreateSolidBrush(RGB(132, 13, 7));
+    SelectObject(hdc, bloodp);
+    SelectObject(hdc, bloodb);
+
+    Rectangle(hdc, 113 - 128 + cx, 71 - 115 + cy, 120 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 106 - 128 + cx, 85 - 115 + cy, 113 - 128 + cx, 92 - 115 + cy);
+    Rectangle(hdc, 120 - 128 + cx, 85 - 115 + cy, 134 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 99 - 115 + cy, 141 - 128 + cx, 106 - 115 + cy);
+    Rectangle(hdc, 141 - 128 + cx, 106 - 115 + cy, 148 - 128 + cx, 113 - 115 + cy);
+    Rectangle(hdc, 106 - 128 + cx, 99 - 115 + cy, 127 - 128 + cx, 127 - 115 + cy);
+    Rectangle(hdc, 92 - 128 + cx, 114 - 115 + cy, 134 - 128 + cx, 120 - 115 + cy);
+    Rectangle(hdc, 99 - 128 + cx, 121 - 115 + cy, 120 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 120 - 115 + cy, 148 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 141 - 128 + cx, 134 - 115 + cy, 148 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 134 - 128 + cx, 142 - 115 + cy, 148 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 163 - 128 + cx, 85 - 115 + cy, 169 - 128 + cx, 141 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 99 - 115 + cy, 176 - 128 + cx, 106 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 135 - 115 + cy, 176 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 155 - 128 + cx, 120 - 115 + cy, 162 - 128 + cx, 148 - 115 + cy);
+    Rectangle(hdc, 177 - 128 + cx, 149 - 115 + cy, 183 - 128 + cx, 155 - 115 + cy);
+    Rectangle(hdc, 184 - 128 + cx, 156 - 115 + cy, 190 - 128 + cx, 161 - 115 + cy);
+    Rectangle(hdc, 142 - 128 + cx, 163 - 115 + cy, 148 - 128 + cx, 190 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 176 - 115 + cy, 155 - 128 + cx, 183 - 115 + cy);
+    Rectangle(hdc, 128 - 128 + cx, 163 - 115 + cy, 134 - 128 + cx, 169 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 170 - 115 + cy, 127 - 128 + cx, 176 - 115 + cy);
+    Rectangle(hdc, 127 - 128 + cx, 177 - 115 + cy, 134 - 128 + cx, 183 - 115 + cy);
+    Rectangle(hdc, 50 - 128 + cx, 99 - 115 + cy, 56 - 128 + cx, 127 - 115 + cy);
+    Rectangle(hdc, 57 - 128 + cx, 106 - 115 + cy, 63 - 128 + cx, 126 - 115 + cy);
+    Rectangle(hdc, 43 - 128 + cx, 113 - 115 + cy, 50 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 29 - 128 + cx, 114 - 115 + cy, 35 - 128 + cx, 133 - 115 + cy);
+    Rectangle(hdc, 43 - 128 + cx, 113 - 115 + cy, 50 - 128 + cx, 134 - 115 + cy);
+    Rectangle(hdc, 36 - 128 + cx, 120 - 115 + cy, 43 - 128 + cx, 140 - 115 + cy);
+    Rectangle(hdc, 29 - 128 + cx, 114 - 115 + cy, 35 - 128 + cx, 133 - 115 + cy);
+    Rectangle(hdc, 22 - 128 + cx, 64 - 115 + cy, 28 - 128 + cx, 71 - 115 + cy);
+    Rectangle(hdc, 29 - 128 + cx, 58 - 115 + cy, 35 - 128 + cx, 64 - 115 + cy);
+    Rectangle(hdc, 15 - 128 + cx, 44 - 115 + cy, 21 - 128 + cx, 57 - 115 + cy);
+    Rectangle(hdc, 21 - 128 + cx, 51 - 115 + cy, 28 - 128 + cx, 57 - 115 + cy);
+    Rectangle(hdc, 8 - 128 + cx, 57 - 115 + cy, 14 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 1 - 128 + cx, 65 - 115 + cy, 7 - 128 + cx, 71 - 115 + cy);
+    Rectangle(hdc, 1 - 128 + cx, 78 - 115 + cy, 7 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 8 - 128 + cx, 85 - 115 + cy, 14 - 128 + cx, 92 - 115 + cy);
+    DeleteObject(bloodp);
+    DeleteObject(bloodb);
+
+
+    HPEN hookp = CreatePen(PS_SOLID, 2, RGB(62, 59, 66));
+    HBRUSH hookb = CreateSolidBrush(RGB(62, 59, 66));
+    SelectObject(hdc, hookp);
+    SelectObject(hdc, hookb);
+    Rectangle(hdc, 8 - 128 + cx, 51 - 115 + cy, 14 - 128 + cx, 56 - 115 + cy);
+    Rectangle(hdc, 15 - 128 + cx, 58 - 115 + cy, 28 - 128 + cx, 63 - 115 + cy);
+    Rectangle(hdc, 29 - 128 + cx, 65 - 115 + cy, 35 - 128 + cx, 91 - 115 + cy);
+    Rectangle(hdc, 22 - 128 + cx, 72 - 115 + cy, 42 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 36 - 128 + cx, 72 - 115 + cy, 43 - 128 + cx, 119 - 115 + cy);
+    Rectangle(hdc, 43 - 128 + cx, 92 - 115 + cy, 49 - 128 + cx, 112 - 115 + cy);
+    Rectangle(hdc, 51 - 128 + cx, 128 - 115 + cy, 56 - 128 + cx, 140 - 115 + cy);
+    Rectangle(hdc, 44 - 128 + cx, 135 - 115 + cy, 56 - 128 + cx, 140 - 115 + cy);
+    Rectangle(hdc, 22 - 128 + cx, 99 - 115 + cy, 28 - 128 + cx, 105 - 115 + cy);
+    Rectangle(hdc, 8 - 128 + cx, 93 - 115 + cy, 21 - 128 + cx, 99 - 115 + cy);
+    Rectangle(hdc, 1 - 128 + cx, 85 - 115 + cy, 7 - 128 + cx, 91 - 115 + cy);
+    Rectangle(hdc, 8 - 128 + cx, 64 - 115 + cy, 14 - 128 + cx, 84 - 115 + cy);
+    Rectangle(hdc, 1 - 128 + cx, 72 - 115 + cy, 7 - 128 + cx, 77 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 8 - 115 + cy, 161 - 128 + cx, 14 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 15 - 115 + cy, 155 - 128 + cx, 21 - 115 + cy);
+    Rectangle(hdc, 156 - 128 + cx, 22 - 115 + cy, 162 - 128 + cx, 28 - 115 + cy);
+    Rectangle(hdc, 163 - 128 + cx, 15 - 115 + cy, 168 - 128 + cx, 21 - 115 + cy);
+    Rectangle(hdc, 170 - 128 + cx, 22 - 115 + cy, 176 - 128 + cx, 28 - 115 + cy);
+    DeleteObject(hookp);
+    DeleteObject(hookb);
+
+    HPEN greenp = CreatePen(PS_SOLID, 2, RGB(52, 81, 50));
+    HBRUSH greenb = CreateSolidBrush(RGB(52, 81, 50));
+    SelectObject(hdc, greenp);
+    SelectObject(hdc, greenb);
+    Rectangle(hdc, 113 - 128 + cx, 22 - 115 + cy, 120 - 128 + cx, 35 - 115 + cy);
+    Rectangle(hdc, 121 - 128 + cx, 15 - 115 + cy, 127 - 128 + cx, 21 - 115 + cy);
+    Rectangle(hdc, 127 - 128 + cx, 8 - 115 + cy, 147 - 128 + cx, 14 - 115 + cy);
+    Rectangle(hdc, 135 - 128 + cx, 1 - 115 + cy, 140 - 128 + cx, 14 - 115 + cy);
+    DeleteObject(greenp);
+    DeleteObject(greenb);
+
+
+
+    HPEN eyep = CreatePen(PS_SOLID, 2, RGB(162, 179, 197));
+    HBRUSH eyeb = CreateSolidBrush(RGB(162, 179, 197));
+    SelectObject(hdc, eyep);
+    SelectObject(hdc, eyeb);
+    Rectangle(hdc, 128 - 128 + cx, 29 - 115 + cy, 134 - 128 + cx, 35 - 115 + cy);
+    Rectangle(hdc, 149 - 128 + cx, 29 - 115 + cy, 155 - 128 + cx, 35 - 115 + cy);
+    DeleteObject(eyep);
+    DeleteObject(eyeb);
+
+    HPEN pinkkp = CreatePen(PS_SOLID, 2, RGB(165, 112, 138));
+    HBRUSH pinkkb = CreateSolidBrush(RGB(165, 112, 138));
+    SelectObject(hdc, pinkkp);
+    SelectObject(hdc, pinkkb);
+    Rectangle(hdc, 113 - 128 + cx, 36 - 115 + cy, 120 - 128 + cx, 49 - 115 + cy);
+    Rectangle(hdc, 135 - 128 + cx, 36 - 115 + cy, 148 - 128 + cx, 42 - 115 + cy);
+    DeleteObject(pinkkp);
+    DeleteObject(pinkkb);
+
+    HPEN zubp = CreatePen(PS_SOLID, 2, RGB(225, 223, 202));
+    HBRUSH zubb = CreateSolidBrush(RGB(225, 223, 202));
+    SelectObject(hdc, zubp);
+    SelectObject(hdc, zubb);
+    Rectangle(hdc, 128 - 128 + cx, 50 - 115 + cy, 155 - 128 + cx, 56 - 115 + cy);
+    DeleteObject(zubp);
+    DeleteObject(zubb);
+
+    HPEN gubap = CreatePen(PS_SOLID, 2, RGB(86, 52, 68));
+    HBRUSH gubab = CreateSolidBrush(RGB(86, 52, 68));
+    SelectObject(hdc, gubap);
+    SelectObject(hdc, gubab);
+    Rectangle(hdc, 128 - 128 + cx, 57 - 115 + cy, 155 - 128 + cx, 63 - 115 + cy);
+    DeleteObject(gubap);
+    DeleteObject(gubab);
+
+}
+
+void chain(HDC hdc, int cx, int cy) {
+
+    HPEN cepp = CreatePen(PS_SOLID, 2, RGB(62, 59, 66));
+    HBRUSH cepb = CreateSolidBrush(RGB(62, 59, 66));
+    SelectObject(hdc, cepp);
+    SelectObject(hdc, cepb);
+    Rectangle(hdc, 245 - 266 + cx, 126 - 127 + cy, 261 - 266 + cx, 128 - 127 + cy);
+    Rectangle(hdc, 256 - 266 + cx, 121 - 127 + cy, 277 - 266 + cx, 123 - 127 + cy);
+    Rectangle(hdc, 256 - 266 + cx, 121 - 127 + cy, 258 - 266 + cx, 133 - 127 + cy);
+    Rectangle(hdc, 256 - 266 + cx, 131 - 127 + cy, 277 - 266 + cx, 133 - 127 + cy);
+    Rectangle(hdc, 275 - 266 + cx, 121 - 127 + cy, 277 - 266 + cx, 133 - 127 + cy);
+    Rectangle(hdc, 272 - 266 + cx, 126 - 127 + cy, 288 - 266 + cx, 128 - 127 + cy);
+    DeleteObject(cepp);
+    DeleteObject(cepb);
+}
+void hook(HDC hdc, int cx, int cy) {
+
+
+    HPEN hookp = CreatePen(PS_SOLID, 2, RGB(62, 59, 66));
+    HBRUSH hookb = CreateSolidBrush(RGB(62, 59, 66));
+    SelectObject(hdc, hookp);
+    SelectObject(hdc, hookb);
+    Rectangle(hdc, 287 - 287 + cx, 82 - 87 + cy, 299 - 287 + cx, 94 - 87 + cy);
+    Rectangle(hdc, 300 - 287 + cx, 87 - 87 + cy, 313 - 287 + cx, 94 - 87 + cy);
+    Rectangle(hdc, 308 - 287 + cx, 89 - 87 + cy, 337 - 287 + cx, 102 - 87 + cy);
+    Rectangle(hdc, 335 - 287 + cx, 96 - 87 + cy, 355 - 287 + cx, 109 - 87 + cy);
+    Rectangle(hdc, 350 - 287 + cx, 103 - 87 + cy, 369 - 287 + cx, 116 - 87 + cy);
+    Rectangle(hdc, 364 - 287 + cx, 110 - 87 + cy, 376 - 287 + cx, 130 - 87 + cy);
+    Rectangle(hdc, 335 - 287 + cx, 124 - 87 + cy, 363 - 287 + cx, 137 - 87 + cy);
+    Rectangle(hdc, 328 - 287 + cx, 117 - 87 + cy, 334 - 287 + cx, 130 - 87 + cy);
+    Rectangle(hdc, 322 - 287 + cx, 110 - 87 + cy, 328 - 287 + cx, 116 - 87 + cy);
+    DeleteObject(hookp);
+    DeleteObject(hookb);
+
+    HPEN hookbloodp = CreatePen(PS_SOLID, 2, RGB(132, 8, 10));
+    HBRUSH hookbloodb = CreateSolidBrush(RGB(132, 8, 10));
+    SelectObject(hdc, hookbloodp);
+    SelectObject(hdc, hookbloodb);
+    Rectangle(hdc, 363 - 287 + cx, 103 - 87 + cy, 369 - 287 + cx, 109 - 87 + cy);
+    Rectangle(hdc, 356 - 287 + cx, 110 - 87 + cy, 363 - 287 + cx, 116 - 87 + cy);
+    Rectangle(hdc, 370 - 287 + cx, 110 - 87 + cy, 376 - 287 + cx, 123 - 87 + cy);
+    Rectangle(hdc, 376 - 287 + cx, 117 - 87 + cy, 383 - 287 + cx, 123 - 87 + cy);
+    Rectangle(hdc, 364 - 287 + cx, 124 - 87 + cy, 370 - 287 + cx, 130 - 87 + cy);
+    Rectangle(hdc, 356 - 287 + cx, 131 - 87 + cy, 363 - 287 + cx, 137 - 87 + cy);
+    Rectangle(hdc, 343 - 287 + cx, 131 - 87 + cy, 349 - 287 + cx, 137 - 87 + cy);
+    Rectangle(hdc, 335 - 287 + cx, 124 - 87 + cy, 342 - 287 + cx, 130 - 87 + cy);
+    DeleteObject(hookbloodp);
+    DeleteObject(hookbloodb);
+
+
+
+}

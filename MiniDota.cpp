@@ -13,18 +13,14 @@
 #include <time.h>
 #include"DrawingModels.h"
 #pragma comment(lib, "winmm.lib")
-#include "MMSystem.h"
 
 
 //#define DEBUG_GAME
 #define MAX_LOADSTRING 100
 
 // Глобальные переменные:
-short raz = 1;
-short max = 1800, min = 10;
-short maxy = 1000, miny = -10;
-short music = 0;
-short SizeX = 384 / 2, SizeY = 216;
+char time_zvuk=0;
+bool raz = true, mov = true,j=true, zvuk = false,WinOrLossMusic = false;
 short step = 0;
 RECT WinRect;
 HDC Frame_DC = 0;
@@ -152,12 +148,20 @@ struct Image imANTI_MAGF = { 250 + 192,480,10,0 };
 struct Image imCREEPF = { 1366 + 192,480,-10,0 };
 struct Image imMANTA_STYLE3F = { 430,530,10,0 };
 struct Image imMANTA_STYLE4F = { 1560,530,-10,0 };
+
+
+struct Image imHook = { 595,450, 30 , 0 };
+struct Image imMONYL = { 1500, 475, 0 , 0 };
+
+
+
 //WIN
 struct Image imMONYW = { 856 + 192,310,0,-5 };
 enum Modes {
     MUSIC,
     START,
     GAME,
+    LOAD,
     WIN1,
     LOSS,
     FINISH,
@@ -177,17 +181,12 @@ typedef struct Object {
     int Vision;
 }OBJECT;
 OBJECT mony[4] = {
-    { 500 + SizeX,400 + 216,1},
-    { 500 + SizeX,100 + 216,1},
-    { 600 + SizeX,400 + 216,1},
-    { 300 + SizeX,400 + 216,1}
+    { 500 + + 167,400 + 216,1},
+    { 500 + + 167,100 + 216,1},
+    { 600 + + 167,400 + 216,1},
+    { 300 + + 167,400 + 216,1}
 };
-typedef struct ms {
-    int X;
-    int Y;
-    int Vision;
-}MS;
-MS manta = { 840 + 192,185 + 216,1 };
+OBJECT manta = { 840 + 192,185 + 216,1 };
 typedef struct creep {
     int X;
     int Y;
@@ -204,30 +203,126 @@ OBJECT healing[2] = {
 };
 OBJECT illusion1 = { 0,0,0 };
 OBJECT illusion2 = { 0,0, 0 };
+short tik = 0;
+HWND hWnd;
+void load(HDC hdc) {
+    if (j) {
+        imHook = { 595,450, 30 , 0 };
+        imMONYL = { 1500, 475, 0 , 0 };
+    }
+    j = false;
+    puge(hdc, 480, 475);
+    hook(hdc, imHook.cx, imHook.cy);
+    short cx = 580, cy = 450,i=0,ui=30;
+    if (mov) {
+        while (i < 1 + tik) {
+            chain(hdc, cx, cy);
+            cx += 30;
+            i++;
+        }
+    }
+    i = 0;
+    cx = 580, cy = 450;
+    short celi = 1510;
+    if (!mov) {
+            while (cx < celi) {
+                chain(hdc, cx, cy);
+                cx += 30;
+            }
+            cx = 580;
+            celi -= 30;
+
+        }
+    
+
+    
+    MONY(hdc, imMONYL.cx, imMONYL.cy);
+
+}
+void restart() 
+{
+    anti_mag.Helth = 7;
+    anti_mag.HasManta = 0;
+    anti_mag.number_of_coins = 6;
+
+    mony[0].Vision = 1 ;
+
+    mony[1].Vision = 1;
+    mony[2].Vision = 1;
+    mony[3].Vision = 1;
+
+    manta.Vision = 1;
+
+    creep[0].Helth = 1;
+    creep[1].Helth = 1;
+
+    creep[0].Vision = 1;
+    creep[1].Vision = 1;
+
+
+    healing[0].Vision =1 ;
+    healing[1].Vision = 1 ;
+
+    illusion1 = { 0,0,0 };
+    illusion2 = { 0,0, 0 };
+
+    //ANTI-MAG
+    //Рандомное перемешение героя при рестарте
+    anti_mag.X = rand() % (1800 - 10 + 1) + 10;
+    anti_mag.Y = rand() % (1000 - -10 + 1) + -10;
+
+
+    //CREEP
+    creep[0].X = rand() % (1800 - 10 + 1) + 10;
+    creep[1].X = rand() % (1800 - 10 + 1) + 10;
+    creep[0].Y = rand() % (1000 - -10 + 1) + -10;
+    creep[1].Y = rand() % (1000 - -10 + 1) + -10;
+    //MONY
+    mony[0].X = rand() % (1800 - 10 + 1) + 10;
+    mony[1].X = rand() % (1800 - 10 + 1) + 10;
+    mony[2].X = rand() % (1800 - 10 + 1) + 10;
+    mony[3].X = rand() % (1800 - 10 + 1) + 10;
+
+    mony[0].Y = rand() % (1000 - -10 + 1) + -10;
+    mony[1].Y = rand() % (1000 - -10 + 1) + -10;
+    mony[2].Y = rand() % (1000 - -10 + 1) + -10;
+    mony[3].Y = rand() % (1000 - -10 + 1) + -10;
+    //MANTA
+    manta.X = rand() % (1800 - 10 + 1) + 10;
+    manta.Y = rand() % (1000 - -10 + 1) + -10;
+
+    //Healing
+    healing[0].X = rand() % (1800 - 10 + 1) + 10;
+    healing[1].X = rand() % (1800 - 10 + 1) + 10;
+
+    healing[0].Y =rand() % (1000 - -10 + 1) + -10;
+    healing[1].Y =rand() % (1000 - -10 + 1) + -10;
+
+}
 void RandomSpawn() {
     srand(time(NULL));
 
-    if (raz == 1) {
+    if (raz) {
         //CREEP
-        creep[0].X = rand() % (max - min + 1) + min;
-        creep[1].X = rand() % (max - min + 1) + min;
-        creep[0].Y = rand() % (maxy - miny + 1) + miny;
-        creep[1].Y = rand() % (maxy - miny + 1) + miny;
+        creep[0].X = rand() % (1800 - 10 + 1) + 10;
+        creep[1].X = rand() % (1800 - 10 + 1) + 10;
+        creep[0].Y = rand() % (1000 - -10 + 1) + -10;
+        creep[1].Y = rand() % (1000 - -10 + 1) + -10;
         //MONY
-        mony[0].X = rand() % (max - min + 1) + min;
-        mony[1].X = rand() % (max - min + 1) + min;
-        mony[2].X = rand() % (max - min + 1) + min;
-        mony[3].X = rand() % (max - min + 1) + min;
+        mony[0].X = rand() % (1800 - 10 + 1) + 10;
+        mony[1].X = rand() % (1800 - 10 + 1) + 10;
+        mony[2].X = rand() % (1800 - 10 + 1) + 10;
+        mony[3].X = rand() % (1800 - 10 + 1) + 10;
 
-        mony[0].Y = rand() % (maxy - miny + 1) + miny;
-        mony[1].Y = rand() % (maxy - miny + 1) + miny;
-        mony[2].Y = rand() % (maxy - miny + 1) + miny;
-        mony[3].Y = rand() % (maxy - miny + 1) + miny;
+        mony[0].Y = rand() % (1000 - -10 + 1) + -10;
+        mony[1].Y = rand() % (1000 - -10 + 1) + -10;
+        mony[2].Y = rand() % (1000 - -10 + 1) + -10;
+        mony[3].Y = rand() % (1000 - -10 + 1) + -10;
         //MANTA
-        manta.X = rand() % (max - min + 1) + min;
-        manta.Y = rand() % (maxy - miny + 1) + miny;
+        manta.X = rand() % (1800 - 10 + 1) + 10;
+        manta.Y = rand() % (1000 - -10 + 1) + -10;
     }
-    raz = 0;
+    raz = false;
     if (rand() % 10 == 1|| rand() % 10 == 2) {
         if (creep[0].Helth < 1 || creep[0].Vision < 1) {
             creep[0].Vision = 1;
@@ -258,26 +353,26 @@ void GoDirectionIllusion() {
     int dx = 0, dy = 0;
     if (illusion1.Vision) {
         if (creep[0].X > illusion1.X)
-            dx = 8;
+            dx = 10;
         if (creep[0].X < illusion1.X)
-            dx = -8;
+            dx = -10;
         if (creep[0].Y > illusion1.Y)
-            dy = 8;
+            dy = 10;
         if (creep[0].Y < illusion1.Y)
-            dy = -8;
+            dy = -10;
         illusion1.X += dx;
         illusion1.Y += dy;
     }
 
     if (illusion2.Vision) {
         if (creep[1].X > illusion2.X)
-            dx = 8;
+            dx = 10;
         if (creep[1].X < illusion2.X)
-            dx = -8;
+            dx = -10;
         if (creep[1].Y > illusion2.Y)
-            dy = 8;
+            dy = 10;
         if (creep[1].Y < illusion2.Y)
-            dy = -8;
+            dy = -10;
         illusion2.X += dx;
         illusion2.Y += dy;
     }
@@ -330,6 +425,25 @@ void statistics(HDC hdc) {
     DeleteObject(hBrushM);
     //icon
     ANTI_MAG(hdc, 510 + 192, 733 + 216);
+    //BUTTON
+    HPEN hPengreen = CreatePen(PS_SOLID, 2, RGB(72, 162, 101));
+    HBRUSH hBrushGreen = CreateSolidBrush(RGB(72, 162, 101));
+
+    
+    SelectObject(hdc, hPengreen);
+    SelectObject(hdc, hBrushGreen);
+    RoundRect(hdc, 1760, 14, 1896, 82, 20, 20);
+    DeleteObject(hPengreen);
+    DeleteObject(hBrushGreen);
+
+HFONT hFont = CreateFont(30, 0, 0, 0, 999, 9, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Courier New");
+    SelectObject(hdc, hFont);
+    SetBkMode(hdc, TRANSPARENT);
+    SetTextColor(hdc, RGB(0,0,0));
+    TCHAR strT[180] = L"RESTART";
+    SetTextAlign(hdc, TA_CENTER);
+    TextOut(hdc, 1825, 30, (LPCWSTR)strT, _tcslen(strT));
+    DeleteObject(hFont);
 
 }
 void DrawGame(HDC hdc) {
@@ -382,6 +496,9 @@ void TryToHealing() {
             && anti_mag.Y + 100 > healing[0].Y - 30) {
             healing[0].Vision = 0;
             anti_mag.Helth += 5;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Healing_Salve.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
     if (healing[1].Vision) {
@@ -391,6 +508,9 @@ void TryToHealing() {
             && anti_mag.Y + 100 > healing[1].Y - 30) {
             healing[1].Vision = 0;
             anti_mag.Helth += 5;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Healing_Salve.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
 }
@@ -403,6 +523,9 @@ void TryToEatMony() {
             ) {
             mony[0].Vision = 0;
             anti_mag.number_of_coins++;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("coins.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
     if (mony[1].Vision) {
@@ -413,6 +536,9 @@ void TryToEatMony() {
             ) {
             mony[1].Vision = 0;
             anti_mag.number_of_coins++;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("coins.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
     if (mony[2].Vision) {
@@ -423,6 +549,9 @@ void TryToEatMony() {
             ) {
             mony[2].Vision = 0;
             anti_mag.number_of_coins++;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("coins.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
     if (mony[3].Vision) {
@@ -433,6 +562,9 @@ void TryToEatMony() {
             ) {
             mony[3].Vision = 0;
             anti_mag.number_of_coins++;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("coins.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
 
@@ -447,6 +579,9 @@ void TryToEatManta() {
             ) {
             manta.Vision = 0;
             anti_mag.HasManta++;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Anti_manta_selection.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
     }
 
@@ -532,12 +667,18 @@ void ConectCreepAndAM() {
             && anti_mag.HasManta) {
             creep[0].Vision = 0;
             anti_mag.HasManta--;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Kill_creep.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
         if (anti_mag.X - 50 < creep[0].X + 50
             && anti_mag.X + 50 > creep[0].X - 54
             && anti_mag.Y - 50 < creep[0].Y + 95
             && anti_mag.Y + 100 > creep[0].Y - 60) {
             anti_mag.Helth--;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Anti_mag_damage.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
 
     }
@@ -551,12 +692,18 @@ void ConectCreepAndAM() {
             && anti_mag.HasManta) {
             creep[1].Vision = 0;
             anti_mag.HasManta--;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Kill_creep.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
         if (anti_mag.X - 50 < creep[1].X + 50
             && anti_mag.X + 50 > creep[1].X - 54
             && anti_mag.Y - 50 < creep[1].Y + 95
             && anti_mag.Y + 100 > creep[1].Y - 60) {
             anti_mag.Helth--;
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Anti_mag_damage.wav"), NULL, SND_LOOP | SND_ASYNC);
         }
 
     }
@@ -572,6 +719,9 @@ void ConectCreepAndAMillusion() {
                 creep[0].Helth = 0;
                 creep[0].Vision = 0;
                 illusion1.Vision = 0;
+                zvuk = true;
+                if (zvuk)
+                    PlaySound(TEXT("Kill_creep.wav"), NULL, SND_LOOP | SND_ASYNC);
             }
         }
     }
@@ -584,6 +734,9 @@ void ConectCreepAndAMillusion() {
                 creep[1].Helth = 0;
                 creep[1].Vision = 0;
                 illusion2.Vision = 0;
+                zvuk = true;
+                if (zvuk)
+                    PlaySound(TEXT("Kill_creep.wav"), NULL, SND_LOOP | SND_ASYNC);
             }
         }
     }
@@ -743,10 +896,36 @@ void DC_Paint(HWND hwnd)
     Rectangle(Frame_DC, -1, -1, rect.right, rect.bottom);
     DeleteObject(hBrushbg);
     if (mode == START) {
+
+
         TextMD(Frame_DC, 960, 480);
         Textby(Frame_DC, 960, 510);
         ANTI_MAG(Frame_DC, imANTI_MAG.cx, imANTI_MAG.cy);
         MONY(Frame_DC, imMONY.cx, imMONY.cy);
+
+        //BUTTON
+        HPEN hPengreen = CreatePen(PS_SOLID, 2, RGB(33, 222, 71));
+        HBRUSH hBrushGreen = CreateSolidBrush(RGB(33, 222, 71));
+
+
+        SelectObject(hdc, hPengreen);
+        SelectObject(hdc, hBrushGreen);
+        RoundRect(hdc, 712, 606, 1207, 700, 20, 20);
+        DeleteObject(hPengreen);
+        DeleteObject(hBrushGreen);
+
+        HFONT hFont = CreateFont(30, 0, 0, 0, 999, 9, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, L"Courier New");
+        SelectObject(hdc, hFont);
+        SetBkMode(hdc, TRANSPARENT);
+        SetTextColor(hdc, RGB(0, 0, 0));
+        TCHAR strT[180] = L"RESTART";
+        SetTextAlign(hdc, TA_CENTER);
+        TextOut(hdc, 1825, 30, (LPCWSTR)strT, _tcslen(strT));
+        DeleteObject(hFont);
+
+    }
+    if (mode == LOAD) {
+        load(Frame_DC);
     }
     if (mode == GAME) {
         DrawGame(Frame_DC);
@@ -768,6 +947,10 @@ void DC_Paint(HWND hwnd)
 
 }
 void KeepGame() {
+    tik = 0;
+    mov = true;
+    j = true;
+    mode = LOAD;
     FILE* fout;
     fopen_s(&fout, "GameState.txt", "wt");
     if (fout == NULL) {
@@ -800,7 +983,10 @@ void KeepGame() {
 
 }
 void LoadGame() {
-    mode = GAME;
+    tik = 0;
+    mov = true;
+    j = true;
+    mode = LOAD;
     FILE* fin;
     fopen_s(&fin, "GameState.txt", "rt");
     if (fin == NULL) {
@@ -830,6 +1016,7 @@ void LoadGame() {
 
     fclose(fin);
 }
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -838,7 +1025,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_LBUTTONDOWN:
     {
-        if (anti_mag.number_of_coins >= 3) {
+
+        if (anti_mag.number_of_coins >= 3 && mode == GAME) {
+
+            zvuk = true;
+            if (zvuk)
+                PlaySound(TEXT("Anti-Mage_Blink.wav"), NULL, SND_LOOP | SND_ASYNC);
+
             WORD xBlink, yBlink;
 
             // Сохраняем координаты курсора мыши
@@ -857,6 +1050,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             InvalidateRect(hWnd, NULL, TRUE);
 
             anti_mag.number_of_coins -= 3;
+        }
+        if (mode == GAME) {
+
+            WORD xButton, yButton;
+
+            // Сохраняем координаты курсора мыши
+            xButton = LOWORD(lParam);
+            yButton = HIWORD(lParam);
+
+            if (xButton >= 1760 && xButton <= 1896 && yButton <= 82 && yButton >= 14) {
+                restart();
+
+            }
+
+
+            InvalidateRect(hWnd, NULL, TRUE);
+
+
         }
     }
     break;
@@ -882,13 +1093,50 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         SetTimer(hWnd, 1, 100, 0);
         break;
     case WM_TIMER:
+
+        if (zvuk == true) {
+            time_zvuk++;
+            if (time_zvuk ==10) {
+                zvuk = false;
+                PlaySound(NULL, NULL, 0);
+                time_zvuk = 0;
+            }
+        }
+
+
         InvalidateRect(hWnd, NULL, TRUE);
+        if (mode == LOAD) {
+            imHook.cx += imHook.vx;
+            imMONYL.cx += imMONYL.vx;
+            if (imHook.cx == 1495) {
+                imHook.vx = -30;
+                imMONYL.vx = -30;
+            }
+            if (imHook.cx == 595) {
+                imHook.vx = 0;
+                mode = GAME;
+            }
+            if (tik == 30)
+                mov = false;
+            if (tik == -1)
+                mov = true;
+
+            tik++;
+            
+        }
         //WIN
         if (mode == MUSIC) {
             Music();
             mode = START;
         }
         if (mode == WIN1) {
+            if (!WinOrLossMusic) {
+                PlaySound(TEXT("win.wav"), NULL, SND_LOOP | SND_ASYNC);
+                zvuk = false;
+                WinOrLossMusic = true;
+            }
+
+
             imMONYW.cy += imMONYW.vy;
             if (imMONYW.cy == 285) {
                 imMONYW.vy = 5;
@@ -940,6 +1188,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         if (mode == LOSS) {
+
+
+            if (!WinOrLossMusic) {
+                PlaySound(TEXT("titry-directed-by-robert-b-weide-theme-meme.wav"), NULL, SND_LOOP | SND_ASYNC);
+                zvuk = false;
+                WinOrLossMusic = true;
+            }
+
             imCREEP2.cx += imCREEP2.vx;
             imCREEP1.cx += imCREEP1.vx;
             if (imCREEP1.cx == 150 + 1096 + 192) {
@@ -1044,12 +1300,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             TryToEatManta();
             TryToEatMony();
             TryToHealing();
+
             if (mony[0].Vision == 0 && mony[1].Vision == 0 && mony[2].Vision == 0 && mony[3].Vision == 0) {
                 mode = WIN1;
             }
+
             if (anti_mag.Helth == 0) {
                 mode = LOSS;
             }
+
             InvalidateRect(hWnd, NULL, TRUE);
         }
 
@@ -1068,6 +1327,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         if (mode == START) {
             mode = GAME;
         }
+
         if (anti_mag.Helth < 1) {
             mode = LOSS;
         }
@@ -1081,6 +1341,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case 0x4c://l
             LoadGame();
             break;
+            if (mode == GAME) {
         case 0x57:
             if (WinRect.top <= anti_mag.Y) {
                 anti_mag.Y -= 11;// or "w"
@@ -1108,18 +1369,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 InvalidateRect(hWnd, NULL, TRUE);
             }
             break;
-
+            }
         default:
             break;
 
         case VK_SPACE:
-            if (anti_mag.HasManta) {
+
+
+            if (anti_mag.HasManta && mode == GAME) {
+
+                zvuk = true;
+                if(zvuk)
+                    PlaySound(TEXT("Manta_Style_use.wav"), NULL, SND_LOOP | SND_ASYNC);
+
                 illusion1 = { anti_mag.X + 50,anti_mag.Y,1 };
                 illusion2 = { anti_mag.X - 50,anti_mag.Y, 1 };
                 anti_mag.HasManta = 0;
                 InvalidateRect(hWnd, NULL, TRUE);
             }
+
+
             break;
+
 
             InvalidateRect(hWnd, NULL, TRUE);
             break;

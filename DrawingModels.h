@@ -6,3 +6,6 @@ void ANTI_MAGILLUSION(HDC hdc, int cx, int cy);
 void CREEP(HDC hdc, int cx, int cy);
 void MONY(HDC hdc, int cx, int cy);
 void MANTA_STYLE(HDC hdc, int cx, int cy);
+void puge(HDC hdc, int cx, int cy);
+void chain(HDC hdc, int cx, int cy);
+void hook(HDC hdc, int cx, int cy);
